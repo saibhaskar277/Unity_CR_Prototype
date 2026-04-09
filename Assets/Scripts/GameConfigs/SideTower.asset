@@ -16,5 +16,5 @@ MonoBehaviour:
   Damage: 75
   AttackRange: 8
   AttackCooldown: 1
-  DetectionRadius: 10
+  DetectionRadius: 4
   ProjectilePrefab: {fileID: 0}

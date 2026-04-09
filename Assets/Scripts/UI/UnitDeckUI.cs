@@ -105,7 +105,7 @@ public class UnitDeckUI : MonoBehaviour
         {
             visibleUnits.Add(allUnits[i]);
             UnitCardView card = Instantiate(cardPrefab, cardContainer);
-            card.Bind(visibleUnits[i], spawnSystem);
+            card.Initialize(visibleUnits[i], spawnSystem);
             cards.Add(card);
         }
     }
@@ -166,7 +166,7 @@ public class UnitDeckUI : MonoBehaviour
             return;
 
         visibleUnits[visibleIndex] = replacement;
-        cards[visibleIndex].Bind(replacement, spawnSystem);
+        cards[visibleIndex].Initialize(replacement, spawnSystem);
         RefreshCards();
     }
 
@@ -184,66 +184,31 @@ public class UnitDeckUI : MonoBehaviour
         if (unitDatabase == null)
             return null;
 
-        MethodInfo getAllMethod = unitDatabase.GetType().GetMethod("GetAll");
-        if (getAllMethod != null)
-        {
-            object result = getAllMethod.Invoke(unitDatabase, null);
-            if (result is IReadOnlyList<UnitData> readOnlyList)
-                return readOnlyList;
-            if (result is List<UnitData> list)
-                return list;
-        }
-
-        FieldInfo unitsField = unitDatabase.GetType().GetField("units", BindingFlags.NonPublic | BindingFlags.Instance);
-        if (unitsField != null && unitsField.GetValue(unitDatabase) is List<UnitData> units)
-            return units;
-
-        return null;
+        return unitDatabase.GetAll();
     }
 
     GameObject GetUnitPrefab(UnitData data)
     {
-        FieldInfo prefabField = data.GetType().GetField("UnitPrefab");
-        return prefabField != null ? prefabField.GetValue(data) as GameObject : null;
+        return data.UnitPrefab;
     }
 
     float GetCurrentElixirFromSystem()
     {
-        return GetFloatProperty(spawnSystem, "CurrentElixir", 0f);
+        return spawnSystem.CurrentElixir;
     }
 
     float GetMaxElixirFromSystem()
     {
-        return GetFloatProperty(spawnSystem, "MaxElixir", 10f);
+        return spawnSystem.MaxElixir;
     }
 
     bool GetIsPlacingFromSystem()
     {
-        PropertyInfo prop = spawnSystem != null ? spawnSystem.GetType().GetProperty("IsPlacing") : null;
-        object value = prop?.GetValue(spawnSystem);
-        return value is bool flag && flag;
+        return spawnSystem.IsPlacing;
     }
 
     UnitData GetSelectedUnitFromSystem()
     {
-        PropertyInfo prop = spawnSystem != null ? spawnSystem.GetType().GetProperty("SelectedUnitData") : null;
-        object value = prop?.GetValue(spawnSystem);
-        return value as UnitData;
-    }
-
-    float GetFloatProperty(object target, string propertyName, float fallback)
-    {
-        if (target == null)
-            return fallback;
-
-        PropertyInfo prop = target.GetType().GetProperty(propertyName);
-        if (prop == null)
-            return fallback;
-
-        object value = prop.GetValue(target);
-        if (value is float floatValue)
-            return floatValue;
-
-        return fallback;
+        return spawnSystem.SelectedUnitData;
     }
 }

@@ -1,105 +1,67 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Reflection;
-using TMPro;
+
 public class UnitCardView : MonoBehaviour
 {
-    [SerializeField] Image unitIcon;
-    [SerializeField] TextMeshProUGUI unitNameText;
-    [SerializeField] TextMeshProUGUI elixirText;
-    [SerializeField] Button selectButton;
-    [SerializeField] Image selectionHighlight;
+    [Header("UI References")]
+    [SerializeField] private Image unitIcon;
+    [SerializeField] private TextMeshProUGUI unitNameText;
+    [SerializeField] private TextMeshProUGUI elixirText;
+    [SerializeField] private Button selectButton;
+    [SerializeField] private Image selectionHighlight;
 
-    UnitData boundData;
-    UnitSpawnSystem spawnSystem;
+    private UnitData boundData;
+    private UnitSpawnSystem spawnSystem;
 
-    public void Bind(UnitData data, UnitSpawnSystem system)
+    public void Initialize(UnitData data, UnitSpawnSystem system)
     {
         boundData = data;
         spawnSystem = system;
 
-        if (unitIcon != null)
-            unitIcon.sprite = boundData != null ? GetCardSprite(boundData) : null;
-
-        if (unitNameText != null)
-            unitNameText.text = boundData != null ? boundData.UnitId.ToString() : "None";
-
-        if (elixirText != null)
-            elixirText.text = boundData != null ? GetElixirCost(boundData).ToString() : "-";
-
-        if (selectButton != null)
-        {
-            selectButton.onClick.RemoveListener(OnSelectClicked);
-            selectButton.onClick.AddListener(OnSelectClicked);
-        }
-
+        SetupCard();
+        RegisterButton();
         RefreshState();
+    }
+
+    private void SetupCard()
+    {
+        if (boundData == null) return;
+
+        unitIcon.sprite = boundData.CardSprite;
+        unitNameText.text = boundData.UnitId.ToString();
+        elixirText.text = boundData.ElixirCost.ToString();
+    }
+
+    private void RegisterButton()
+    {
+        selectButton.onClick.RemoveAllListeners();
+        selectButton.onClick.AddListener(OnSelectClicked);
     }
 
     public void RefreshState()
     {
-        bool canSpawn = spawnSystem != null && boundData != null && CanSpawnFromSystem();
-        bool isSelected = spawnSystem != null && IsSelectedFromSystem();
-
-        if (selectButton != null)
-            selectButton.interactable = canSpawn;
-
-        if (selectionHighlight != null)
-            selectionHighlight.enabled = isSelected;
-    }
-
-    void OnSelectClicked()
-    {
-        if (spawnSystem == null || boundData == null)
+        if (boundData == null || spawnSystem == null)
             return;
 
-        StartPlacementFromSystem();
+        bool canSpawn = spawnSystem.CanSpawn(boundData);
+        bool isSelected =
+            spawnSystem.IsPlacing &&
+            spawnSystem.SelectedUnitData == boundData;
+
+        selectButton.interactable = canSpawn;
+        selectionHighlight.enabled = isSelected;
     }
 
-    Sprite GetCardSprite(UnitData data)
+    private void OnSelectClicked()
     {
-        FieldInfo field = data.GetType().GetField("CardSprite");
-        return field != null ? field.GetValue(data) as Sprite : null;
-    }
-
-    int GetElixirCost(UnitData data)
-    {
-        FieldInfo field = data.GetType().GetField("ElixirCost");
-        if (field == null)
-            return 0;
-
-        object value = field.GetValue(data);
-        return value is int intValue ? intValue : 0;
-    }
-
-    bool CanSpawnFromSystem()
-    {
-        MethodInfo method = spawnSystem.GetType().GetMethod("CanSpawn");
-        if (method == null)
-            return true;
-
-        object result = method.Invoke(spawnSystem, new object[] { boundData });
-        return result is bool boolResult && boolResult;
-    }
-
-    bool IsSelectedFromSystem()
-    {
-        PropertyInfo selectedProp = spawnSystem.GetType().GetProperty("SelectedUnitData");
-        PropertyInfo placingProp = spawnSystem.GetType().GetProperty("IsPlacing");
-
-        object selected = selectedProp?.GetValue(spawnSystem);
-        object isPlacing = placingProp?.GetValue(spawnSystem);
-
-        bool placing = isPlacing is bool boolValue && boolValue;
-        return placing && selected == (object)boundData;
-    }
-
-    void StartPlacementFromSystem()
-    {
-        MethodInfo method = spawnSystem.GetType().GetMethod("StartPlacement");
-        if (method == null)
+        if (boundData == null || spawnSystem == null)
             return;
 
-        method.Invoke(spawnSystem, new object[] { boundData });
+        if (!spawnSystem.CanSpawn(boundData))
+            return;
+
+        spawnSystem.StartPlacement(boundData);
+        RefreshState();
     }
 }
