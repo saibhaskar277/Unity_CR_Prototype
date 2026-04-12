@@ -78,6 +78,9 @@ public class TargetingSystem : MonoBehaviour, ITargetingStrategy
 
             case TargetAttackType.Air:
                 return targetCategory == UnitCategory.Air;
+
+            case TargetAttackType.Tower:
+                return false;
         }
 
         return false;

@@ -598,6 +598,14 @@ PrefabInstance:
       propertyPath: targetLayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: -1521345362750352461, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 758051387728676067, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: category
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1997104249119509283, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1223,6 +1231,14 @@ PrefabInstance:
       propertyPath: targetLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: -1521345362750352461, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 758051387728676067, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: category
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1997104249119509283, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1611,6 +1627,14 @@ PrefabInstance:
       propertyPath: targetLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: -1521345362750352461, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 758051387728676067, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: category
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1997104249119509283, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1777,6 +1801,14 @@ PrefabInstance:
     - target: {fileID: -2412314625230058012, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: targetLayer.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: -1521345362750352461, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 758051387728676067, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: category
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1997104249119509283, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2776,6 +2808,14 @@ PrefabInstance:
       propertyPath: targetLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: -1521345362750352461, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 758051387728676067, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: category
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1997104249119509283, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3593,6 +3633,14 @@ PrefabInstance:
     - target: {fileID: -2412314625230058012, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: targetLayer.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: -1521345362750352461, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 758051387728676067, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
+      propertyPath: category
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1997104249119509283, guid: 69dfad295953c9b4e907c7ed7c547cee, type: 3}
       propertyPath: m_AnchorMax.x

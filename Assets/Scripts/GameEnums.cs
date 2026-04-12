@@ -4,13 +4,15 @@ public enum TargetAttackType
 {
     Ground,
     Air,
-    Both
+    Both,
+    Tower
 }
 
 public enum UnitCategory
 {
     Grounded,
-    Air
+    Air,
+    Tower
 }
 
 public enum UnitTeam

@@ -21,7 +21,7 @@ MonoBehaviour:
   PreviewPrefab: {fileID: 2881861473878963678, guid: 05e790f4986697f46b1d5103d142dcc9, type: 3}
   MaxHealth: 100
   Damage: 10
-  AttackRange: 1
+  AttackRange: 1.5
   AttackCooldown: 1
   MoveSpeed: 1
   DetectionRadius: 5
