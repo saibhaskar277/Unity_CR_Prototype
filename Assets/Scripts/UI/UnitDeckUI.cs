@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Reflection;
 
 public class UnitDeckUI : MonoBehaviour
 {
@@ -87,7 +86,10 @@ public class UnitDeckUI : MonoBehaviour
         visibleUnits.Clear();
         drawQueue.Clear();
 
-        IReadOnlyList<UnitData> units = GetUnitsFromDatabase();
+        // TODO : Change this later to actual player selected data instead of just taking all units from the database
+        //List<UnitData> units = GetUnitsFromDatabase(PlayerSessionData.instance.Profile.SelectedDeck);
+
+        List<UnitData> units = unitDatabase.GetAll();
         if (units == null || units.Count == 0)
         {
             Debug.LogWarning("UnitConfigDatabase has no units.", this);
@@ -174,12 +176,12 @@ public class UnitDeckUI : MonoBehaviour
         }
     }
 
-    IReadOnlyList<UnitData> GetUnitsFromDatabase()
+    List<UnitData> GetUnitsFromDatabase(List<UnitId> selectedIds)
     {
         if (unitDatabase == null)
             return null;
 
-        return unitDatabase.GetAll();
+        return unitDatabase.GetSelectedUnits(selectedIds);
     }
 
     GameObject GetUnitPrefab(UnitData data)

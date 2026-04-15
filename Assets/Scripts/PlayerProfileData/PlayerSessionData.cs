@@ -27,7 +27,10 @@ public class PlayerSessionData : MonoBehaviour
     private void Awake()
     {
         if(instance == null)
-           instance = this;
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
 

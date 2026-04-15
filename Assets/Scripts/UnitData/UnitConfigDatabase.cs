@@ -33,8 +33,22 @@ public class UnitConfigDatabase : ScriptableObject
         return null;
     }
 
-    public IReadOnlyList<UnitData> GetAll()
+    public List<UnitData> GetAll()
     {
         return units;
+    }
+
+    public List<UnitData> GetSelectedUnits(List<UnitId> selectedIds)
+    {
+        List<UnitData> selectedUnits = new List<UnitData>();
+        foreach (var id in selectedIds)
+        {
+            var unit = Get(id);
+            if (unit != null)
+            {
+                selectedUnits.Add(unit);
+            }
+        }
+        return selectedUnits;
     }
 }

@@ -59,11 +59,13 @@ public class DeckSelectionUI : MonoBehaviour
 
         selectedCards.Add(card);
         availableCards.Remove(card);
+        PlayerSessionData.instance.Profile.SelectedDeck.Add(unit.UnitId);
     }
 
     private void RemoveFromDeck(UnitData unit, DeckSelectionCardView card)
     {
         selectedUnits.Remove(unit);
+        PlayerSessionData.instance.Profile.SelectedDeck.Remove(unit.UnitId);
 
         card.transform.SetParent(availableContainer, false);
         card.SetSelected(false);

@@ -12,12 +12,12 @@ public class UnitConfigMapper : MonoBehaviour
 
     int currentLevel;
 
-    float damage, health;
 
     public void SetUnitData(UnitData data)
     {
         this.data = data;
         id = data.UnitId;
+        // TODO: Get the level from player session data, for now we will set it to 1    
         currentLevel = 1;//PlayerSessionData.instance.GetUnitLevel(id);
         ApplyUnitData();
     }

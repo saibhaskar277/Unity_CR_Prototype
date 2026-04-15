@@ -13,15 +13,13 @@ MonoBehaviour:
   m_Name: pekka
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   UnitId: 7
-  AttackType: 0
-  UnitType: 0
-  CardSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  ElixirCost: 4
   UnitPrefab: {fileID: 2881861473878963678, guid: b303fa8478925af4d851de5a80b2425d, type: 3}
   PreviewPrefab: {fileID: 2881861473878963678, guid: 05e790f4986697f46b1d5103d142dcc9, type: 3}
-  MaxHealth: 1500
-  Damage: 50
-  AttackRange: 1
-  AttackCooldown: 1.5
+  CardSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   MoveSpeed: 1.2
+  AttackRange: 1.5
   DetectionRadius: 5
+  AttackCooldown: 1.5
+  ElixirCost: 4
+  UnitType: 0
+  AttackType: 0
